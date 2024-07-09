@@ -11,5 +11,3 @@ usage right now:
 2. enter name of team a (ex: knicks)
 3. enter name of team b (ex: wizards)
 4. output will be predicted number of points scored in total
-
-DJANGO BRANCH HAS WEB UI!

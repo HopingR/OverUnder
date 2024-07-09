@@ -1,6 +1,6 @@
-from objects.game import Game
-from objects.team import Team
-from misc.helperfunctions import get_seasons
+from game import Game
+from team import Team
+from helperfunctions import get_seasons
 import pandas as pd
 
 # Class to handle the data and return it in machine learning model friendly dataframes for sklearn. Upon instantiating a DataHandler class which takes in num_years
@@ -30,16 +30,9 @@ class DataHandler:
         return X_pred
         
     def load_data(self, update_team=False):
-        print("LOADING team_stats.csv")
-        try:
-            teams = pd.read_csv("csvs/team_stats.csv")
-        except:
-            Team.team_stats_to_csv(num_years=self.num_years)
         if (update_team):
             Team.team_stats_to_csv(num_years=self.num_years)
-        print("LOADING game_logs.csv")
         game_logs = Game.get_game_logs(num_years=self.num_years)
-        print("LOADING game_logs_metrics.csv\n")
         self.game_metrics = Game.get_team_metrics_for_games(game_logs)
         
     def set_X_y(self):

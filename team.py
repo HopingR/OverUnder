@@ -1,6 +1,6 @@
 from nba_api.stats.static.teams import find_team_by_abbreviation, find_team_name_by_id, find_teams_by_full_name, get_teams
 from nba_api.stats.endpoints import teamestimatedmetrics
-from misc.helperfunctions import get_seasons
+from helperfunctions import get_seasons
 import time
 import pandas as pd
 
@@ -18,7 +18,7 @@ class Team:
     @staticmethod
     def set_team(season, name=None, team_id=None):
         try:
-            all_teams = pd.read_csv("csvs/team_stats.csv", index_col=False)
+            all_teams = pd.read_csv("team_stats.csv", index_col=False)
         except:
             print("INITIALIZE TEAM STATS CSV")
 
@@ -49,7 +49,7 @@ class Team:
     @staticmethod
     def team_stats_to_csv(num_years):
         try:
-            all_teams = pd.read_csv("csvs/team_stats.csv", index_col=False)
+            all_teams = pd.read_csv("team_stats.csv", index_col=False)
             teams = get_teams()
             team_stats = []
             for team in teams:
@@ -67,7 +67,7 @@ class Team:
 
             team_stats = pd.concat(team_stats).reset_index(drop=True).map(lambda s: s.lower() if type(s) == str else s)
         
-        team_stats.to_csv("csvs/team_stats.csv", index=False)
+        team_stats.to_csv("team_stats.csv", index=False)
             
     @staticmethod
     def _get_team(num_years, name=None, team_id=None):
